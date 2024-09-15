@@ -1,0 +1,47 @@
+package de.telran.HomeWork_20240910;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class _20240910 {
+    public static void main(String[] args) {
+        // Выведите на экран первые 11 членов последовательности Фибоначчи.
+        //первый и второй члены последовательности равны единицам
+        //а каждый следующий — сумме двух предыдущих
+        //Пример последовательности Фибоначчи - это 1  1  2  3  5  8  13  21  34  55  89  и т.д.
+        //
+        //
+        //Реализация рекурсивно
+        //
+        //* Улучшить используя алгоритм РиВ
+        for (int i = 1; i <= 11; i++) {
+            System.out.println(fibonachiRecursive(i) + " ");
+
+        }
+        for (int i = 1; i <= 11; i++) {
+            System.out.println("Улучшить используя алгоритм РиВ " + fibonachiRecursivePB(i) + " ");
+        }
+    }
+
+    public static int fibonachiRecursive(int n) {
+        if (n == 1 || n == 2) {
+            return 1;
+        }
+        return fibonachiRecursive(n - 1) + fibonachiRecursive(n - 2);
+    }
+
+    private static Map<Integer, Integer> memo = new HashMap<>();
+
+    public static int fibonachiRecursivePB(int n) {
+        if (memo.containsKey(n)) {
+            return memo.get(n);
+        }
+        if (n == 1 || n == 2) {
+            return 1;
+        }
+        int result = fibonachiRecursivePB(n - 1) + fibonachiRecursivePB(n - 2);
+        memo.put(n, result);
+        return result;
+    }
+
+}
